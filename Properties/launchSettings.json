@@ -16,7 +16,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "aspapitest": {
+    "BrowserSerial": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

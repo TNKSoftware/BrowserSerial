@@ -5,7 +5,7 @@ using System.IO.Ports;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace aspapitest.Controllers
+namespace BrowserSerial.Controllers
 {
 
     public class JsonObject : Dictionary<string, object>

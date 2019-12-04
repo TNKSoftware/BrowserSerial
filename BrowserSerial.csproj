@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Arduino\**" />
+    <Content Remove="Arduino\**" />
+    <EmbeddedResource Remove="Arduino\**" />
+    <None Remove="Arduino\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="System.IO.Ports" Version="4.6.0" />
   </ItemGroup>
 
