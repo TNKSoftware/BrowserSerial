@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="jquery-3.4.1.min.js"></script>
+    <script>
+      var count = 0;
+
+      function send(param){
+        return $.ajax({
+          url:"serial/",
+          type: 'POST',
+          data: JSON.stringify(param),
+          contentType: 'application/json' 
+        });
+      }
+
+      function sendAction(action, value){
+        if(!value) value = "";
+        return send({ action:action, value:value })
+      }
+
+      function onClickBegin(){
+        send({ action:"open", port:"COM3", baudrate: 115200 })
+          .done(function(r){
+            if(r.error == false){
+              setInterval(()=>{
+                sendAction("write", "Hello" + (count++) +"!");
+              }, 1000);
+              read();
+            } else{
+              $("#res").text(r.value);
+            }
+          });
+      }
+
+      function read(){
+        sendAction("read").done((r)=>{
+          if(r.action == "read"){
+            $("#res").text(r.value);
+            read();
+          }
+        });
+      }
+
+      $(document).ready(function(){
+        $("#begin").click(onClickBegin);
+      });
+    </script>
+  </head>
+  <body>
+    <input id="begin" type="button" value="Start"></input>
+    <div id="res"></div>
+  </body>
+</html>
